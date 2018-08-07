@@ -68,9 +68,17 @@ def start_ap(bash_manager):
 def stop_ap(bash_manager):
     _stop_ap_daemon(bash_manager, _VIRTUAL_IFACE_)
 
-if __main__:
+def print_usage():
+    print("Usage: ")
+    print(" openair-ap start|stop")
+
+if __name__ == "__main__":
     bash_manager = BashManager()
-    if sys.argv[1] == "start":
+    if len(sys.argv) < 2:
+        print_usage()
+    elif sys.argv[1] == "start":
         start_ap(bash_manager)
-    else if sys.argv[1] == "stop":
+    elif sys.argv[1] == "stop":
         stop_ap(bash_manager)
+    else:
+        print_usage()
